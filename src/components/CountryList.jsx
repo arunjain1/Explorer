@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './CountryList.module.css';
 import Spinner from './Spinner';
 import Message from './Message';
 import CountryItem from './CountryItem';
+import { cityContext } from '../context/cityProvider';
 
 
 
-function CountryList({cities,isLoading}) {
+function CountryList() {
+  const {cities,isLoading} = useContext(cityContext);
   const countries = cities.reduce((acc,city)=>{
     if(!acc.map((el)=>el.country).includes(city.country)){
       return [...acc,{country  : city.country, emoji : city.emoji}]
